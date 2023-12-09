@@ -59,7 +59,7 @@
             <div class="row justify-content-between">
               <div class="col-auto">
                 <div class="container-fluid">
-                  <form>
+                  <form onsubmit="return false">
                     <div class="row">
                     <div class="col">
                       <input type="text" id="titolo" placeholder="Titolo" class="form-control rounded-pill" required>
@@ -74,26 +74,25 @@
                     <br>
                     <div class="row">
                     <div class="col">
-                      <input type="text" id="lat" placeholder="Latitudine" class="form-control rounded-pill" required>
+                      <input type="number" id="lat" placeholder="Latitudine" class="form-control rounded-pill" required>
                     </div>
                     <div class="col">
-                      <input type="text" id="lon" placeholder="Longitudine" class="form-control rounded-pill" required>
-                    </div>
-                  </div>
-                    <br>
-                    <div class="row">
-                    <div class="col">
-                      <input type="text" id="link" placeholder="Link immagine" class="form-control rounded-pill">
-                    </div>
-                    <div class="col">
-                      <button class="btn btn-primary rounded-pill" id="addLink"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
+                      <input type="number" id="lon" placeholder="Longitudine" class="form-control rounded-pill" required>
                     </div>
                   </div>
                     <br>
                     <div class="row">
                     <div class="col">
-                      <button class="btn btn-primary rounded-pill" id="goToModal2" data-bs-toggle="modal"
-                        data-bs-target="#modal2"><img width="30" height="30" src="icon/Next.svg" alt="Open"></button>
+                      <input type="text" id="copertina" placeholder="Link immagine" class="form-control rounded-pill" required>
+                    </div>
+                    <!--<div class="col">
+                      <button class="btn btn-primary rounded-pill" id="addCopertina"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
+                    </div>-->
+                  </div>
+                    <br>
+                    <div class="row">
+                    <div class="col">
+                      <button class="btn btn-primary rounded-pill" id="goToModal2" ><img width="30" height="30" src="icon/Next.svg" alt="Open"></button>
                     </div>
                   </div>
                   </form>
@@ -102,7 +101,7 @@
               <div class="col-auto" id="cardModal1">
                 <div class="col-auto">
                   <div class="card text-white" style="width: 20rem; height: 27rem;" id="card%ID">
-                    <img src="img/placeholder.svg" class="img-card card-img-top img-fluid" alt="...">
+                    <img src="img/placeholder.svg" id="cardModalImg" class="img-card card-img-top img-fluid" alt="...">
                     <div class="card-body">
                       <h5 class="card-title text-center">...</h5>
                       <p class="card-text">...</p>
@@ -138,6 +137,7 @@
           <div class="container">
             <div class="row">
               <div class="col">
+                <form onsubmit="return false">
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col">
@@ -156,15 +156,16 @@
                   <br>
                   <div class="row">
                     <div class="col">
-                      <button class="btn btn-primary rounded-pill" id="addButton"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
+                      <button type="submit" class="btn btn-primary rounded-pill" id="addButton"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
                     </div>
                   </div>
                 </div>
+                </form>
               </div>
               <div class="col" id="cardModal2">
                 <div class="col-auto">
                   <div class="card text-white" style="width: 20rem; height: 27rem;" id="addCard2">
-                    <img src="%URL" class="img-card card-img-top img-fluid" alt="...">
+                    <img src="img/placeholder.svg" class="img-card card-img-top img-fluid" alt="...">
                     <div class="card-body">
                       <h5 class="card-title text-center">...</h5>
                       <p class="card-text">...</p>

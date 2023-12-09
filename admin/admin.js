@@ -1,21 +1,28 @@
 const example = {
   "titolo": "",
-  "lonlat": ["", ""],  //lon lat
+  "lonlat": [],  //lon lat
+  "copertina" : "",  //immagine copertina
   "immagini": [],
   "descrizione": "",  //descrizione breve
   "testo": ""  //descrizione lunga
 }
 
-export function addLink(diz, link) {
+export function addCop(diz, link) {
   diz.immagini.push(link);
   return diz;
 }
 
-export function saveAll(diz, nome, descr, lat, lon) {
+export function addImg(diz, link) {
+  diz.immagini.push(link);
+  return diz;
+}
+
+export function saveAll(diz, nome, descr, lat, lon, copertina) {
   diz.titolo = nome;
   diz.descrizione = descr;
   diz.lonlat[0] = lon;
   diz.lonlat[1] = lat;
+  diz.copertina = copertina;
   return diz;
 }
 
@@ -42,8 +49,8 @@ export function updateCardMain(diz) {
     </div>
   </div>`;
   let html = template;
-  if (diz.immagini.length > 0) {
-    html = html.replace("%URL", diz.immagini[diz.immagini.length - 1]);
+  if (diz.copertina !== "") {
+    html = html.replace("%URL", diz.copertina);
   }else{
     html = html.replace("%URL", "img/placeholder.svg");
   }
@@ -89,3 +96,72 @@ export function updateCardSec(diz) {
   return html;
 }
 
+export function check1(diz) {
+  let check=true;
+  if(diz.titolo===""){
+    check=false;
+  }
+  if(diz.lonlat.length!==2){
+    check=false;
+  }
+  if(diz.copertina===""){
+    check=false;
+  }
+  if(diz.descrizione===""){
+    check=false;
+  }
+  return check;
+}
+
+export function check2(diz) {
+  let check=true;
+  if(diz.immagini.length<=0){
+    check=false;
+  }
+  if(diz.testo===""){
+    check=false;
+  }
+  return check;
+}
+
+export function resetCardMain() {
+  const template = `<div class="col-auto">
+    <div class="card text-white" style="width: 20rem; height: 27rem;" id="addCard">
+      <img src="%URL" class="img-card card-img-top img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center">%TITOLO</h5>
+        <p class="card-text">%TESTO</p>
+        </div>
+        <div class="card-footer">
+        <div class="row justify-content-end">
+          <div class="col-auto"><button type="button" class="btn btn-outline-primary"><img width="30" height="30" src="icon/Open.svg" alt="Open"></button></div><br><br>
+          </div>
+      </div>
+    </div>
+  </div>`;
+  let html = template;
+  html = html.replace("%URL", "img/placeholder.svg");
+  html = html.replace("%TITOLO", "...");
+  html = html.replace("%TESTO", "...");
+  return html;
+}
+
+export function resetCardSec() {
+  const template = `<div class="col-auto">
+    <div class="card text-white" style="width: 20rem; height: 27rem;" id="addCard2">
+      <div class="card-body">
+        <h5 class="card-title text-center">%TITOLO</h5>
+        <p class="card-text">%TESTO</p>
+        </div>
+        <div class="card-footer">
+        <div class="row justify-content-end">
+          <div class="col-auto"><button type="button" class="btn btn-outline-primary"><img width="30" height="30" src="icon/Open.svg" alt="Open"></button></div><br><br>
+          </div>
+      </div>
+    </div>
+  </div>`;
+  let html = template;
+  html = html.replace("%TITOLO", "...");
+  html = html.replace("%TESTO", "...");
+  return html;
+}
