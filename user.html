@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cards</title>
+  <link href="https://fonts.cdnfonts.com/css/coolvetica-2" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/made-tommy-soft-outline" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/paytone-one" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/made-tommy-outline" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="./src/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <br>
+  <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top rounded-pill">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">ROMA - La città eterna</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </div>
+        <div class="row">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active text-white">ELENCO</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link active"><img width="30" height="30" src="icon/Map.svg" alt="Open"></a>
+            </li>
+            <li class="nav-item">
+              <a href="dettagli.html" class="nav-link active"><img width="30" height="30" src="icon/Logout.svg"
+                  alt="Open"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="cards">
+    </div>
+  </div>
+  <script type="module" src="/user/script.js"></script>
+</body>
+
+</html>
