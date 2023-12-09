@@ -50,11 +50,11 @@ const array = [
   },
 ];
 const example = {
-  "nome": "",
-  "coord": [],  //lon lat
+  "titolo": "",
+  "lonlat": ["", ""],  //lon lat
   "immagini": [],
-  "descrizioneBreve": "",  //descrizione breve
-  "descrizioneLunga": ""  //descrizione lunga
+  "descrizione": "",  //descrizione breve
+  "testo": ""  //descrizione lunga
 }
 
 let currentElement = "";

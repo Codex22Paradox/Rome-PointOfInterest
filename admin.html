@@ -59,28 +59,29 @@
             <div class="row justify-content-between">
               <div class="col-auto">
                 <div class="container-fluid">
-                  <div class="row">
+                  <form>
+                    <div class="row">
                     <div class="col">
-                      <input type="text" id="titolo" placeholder="Titolo" class="form-control rounded-pill">
+                      <input type="text" id="titolo" placeholder="Titolo" class="form-control rounded-pill" required>
                     </div>
                   </div>
-                  <br>
-                  <div class="row">
+                    <br>
+                    <div class="row">
                     <div class="col">
-                      <textarea class="form-control" placeholder="Breve descrizione" id="breveDescr"></textarea>
+                      <textarea class="form-control" placeholder="Breve descrizione" id="breveDescr" required></textarea>
                     </div>
                   </div>
-                  <br>
-                  <div class="row">
+                    <br>
+                    <div class="row">
                     <div class="col">
-                      <input type="text" id="lat" placeholder="Latitudine" class="form-control rounded-pill">
+                      <input type="text" id="lat" placeholder="Latitudine" class="form-control rounded-pill" required>
                     </div>
                     <div class="col">
-                      <input type="text" id="lon" placeholder="Longitudine" class="form-control rounded-pill">
+                      <input type="text" id="lon" placeholder="Longitudine" class="form-control rounded-pill" required>
                     </div>
                   </div>
-                  <br>
-                  <div class="row">
+                    <br>
+                    <div class="row">
                     <div class="col">
                       <input type="text" id="link" placeholder="Link immagine" class="form-control rounded-pill">
                     </div>
@@ -88,13 +89,14 @@
                       <button class="btn btn-primary rounded-pill" id="addLink"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
                     </div>
                   </div>
-                  <br>
-                  <div class="row">
+                    <br>
+                    <div class="row">
                     <div class="col">
                       <button class="btn btn-primary rounded-pill" id="goToModal2" data-bs-toggle="modal"
                         data-bs-target="#modal2"><img width="30" height="30" src="icon/Next.svg" alt="Open"></button>
                     </div>
                   </div>
+                  </form>
                 </div>
               </div>
               <div class="col-auto" id="cardModal1">
@@ -139,7 +141,7 @@
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col">
-                      <textarea class="form-control" placeholder="Descrizione" id="descrLunga"></textarea>
+                      <textarea class="form-control" placeholder="Descrizione" id="descrLunga" required></textarea>
                     </div>
                   </div>
                   <br>

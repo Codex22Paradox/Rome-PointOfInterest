@@ -1,24 +1,27 @@
 const example = {
-  "nome": "",
-  "coord": ["", ""],  //lon lat
+  "titolo": "",
+  "lonlat": ["", ""],  //lon lat
   "immagini": [],
-  "descrizioneBreve": "",  //descrizione breve
-  "descrizioneLunga": ""  //descrizione lunga
+  "descrizione": "",  //descrizione breve
+  "testo": ""  //descrizione lunga
 }
 
 export function addLink(diz, link) {
   diz.immagini.push(link);
+  return diz;
 }
 
 export function saveAll(diz, nome, descr, lat, lon) {
-  diz.nome = nome;
-  diz.descrizioneBreve = descr;
-  diz.coord[0] = lon;
-  diz.coord[1] = lat;
+  diz.titolo = nome;
+  diz.descrizione = descr;
+  diz.lonlat[0] = lon;
+  diz.lonlat[1] = lat;
+  return diz;
 }
 
 export function saveLongDescr(diz, descr) {
-  diz.descrizioneLunga = descr;
+  diz.testo = descr;
+  return diz;
 }
 
 
@@ -44,13 +47,13 @@ export function updateCardMain(diz) {
   }else{
     html = html.replace("%URL", "img/placeholder.svg");
   }
-  if (diz.nome !== "") {
-    html = html.replace("%TITOLO", diz.nome);
+  if (diz.titolo !== "") {
+    html = html.replace("%TITOLO", diz.titolo);
   }else{
     html = html.replace("%TITOLO", "...");
   }
-  if (diz.descrizioneBreve !== "") {
-    html = html.replace("%TESTO", diz.descrizioneBreve);
+  if (diz.descrizione !== "") {
+    html = html.replace("%TESTO", diz.descrizione);
   }else{
     html = html.replace("%TESTO", "...");
   }
@@ -73,13 +76,13 @@ export function updateCardSec(diz) {
     </div>
   </div>`;
   let html = template;
-  if (diz.nome !== "") {
-    html = html.replace("%TITOLO", diz.nome);
+  if (diz.titolo !== "") {
+    html = html.replace("%TITOLO", diz.titolo);
   }else{
     html = html.replace("%TITOLO", "...");
   }
-  if (diz.descrizioneLunga !== "") {
-    html = html.replace("%TESTO", diz.descrizioneLunga);
+  if (diz.testo !== "") {
+    html = html.replace("%TESTO", diz.testo);
   }else{
     html = html.replace("%TESTO", "...");
   }
