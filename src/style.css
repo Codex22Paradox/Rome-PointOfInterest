@@ -168,3 +168,8 @@ table tbody tr td {
   border-radius: 25px;
   border: 1rem solid rgba(33, 37, 41, 0);
 }
+
+
+.displayNone {
+  display: none;
+}

@@ -1,9 +1,10 @@
 import { createDetails, createTitle, createCarousel, createMap} from "/dettagli/dettagli.js";
 
 const poi = JSON.parse(localStorage.getItem("POI"));
-console.log(poi);
+console.log(poi.lonlat);
 const container = document.getElementById("popup");
-const centro = poi.lonLat; //coordinate Roma
+const centro = poi.lonlat; //coordinate Roma
+console.log(centro);
 const map = new ol.Map({
   target: document.querySelector(".map"),
   /*view: new ol.View({

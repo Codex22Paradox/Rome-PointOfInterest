@@ -41,12 +41,11 @@ const innerTemplateActive = `<div class="carousel-item active">
 export const createCarousel = (dict) => {
   const totale = template;
   const array = dict.immagini;
-  console.log(dict);
   let elementi = innerTemplateActive.replace("%SRC", array[0]);
-  console.log(elementi);
   for (let i = 1; i < array.length; i++) {
     elementi += innerTemplate.replace("%SRC", array[i]);
   }
+  console.log(elementi);
   return totale.replace("%ELEMENTI", elementi);
 };
 

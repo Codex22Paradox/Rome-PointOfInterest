@@ -52,3 +52,23 @@ export const recuperaFile = (file) => {
       .catch((error) => reject(error));
   });
 }
+
+export const accedi = (username, password) => {
+  return new Promise((resolve, reject) => {
+        fetch("https://ws.progettimolinari.it/credential/login", {
+        method: "Post",
+        headers: {
+          "content-type": "application/json",
+          key: "93bb2bf0-9b41-4066-971f-1ecbf8ce02fd",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        }),
+        })
+    .then((element) => {
+          resolve(element.json());
+        })
+        .catch((error) => reject(error));
+    });
+}

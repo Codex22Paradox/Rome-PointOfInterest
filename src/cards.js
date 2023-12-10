@@ -2,7 +2,7 @@ const templateUser = `<div class="col-auto">
     <div class="card text-white" style="width: 20rem; height: 27rem;" id="card%ID">
       <img src="%URL" class="img-card card-img-top" style="width: 20rem; height: 13rem;" alt="...">
       <div class="card-body">
-        <h5 class="card-title text-center">%TITOLO</h5>
+        <h5 class="card-title text-center text-uppercase">%TITOLO</h5>
         <p class="card-text">%TESTO</p>
         </div>
         <div class="card-footer">
@@ -17,7 +17,7 @@ const templateAdmin = `<div class="col-auto">
   <div class="card text-white" style="width: 20rem; height: 27rem;" id="card%ID">
     <img src="%URL" class="img-card card-img-top img-fluid" style="width: 20rem; height: 13rem;" alt="...">
     <div class="card-body">
-      <h5 class="card-title text-center">%TITOLO</h5>
+      <h5 class="card-title text-center text-uppercase">%TITOLO</h5>
       <p class="card-text">%TESTO</p>
       </div>
       <div class="card-footer">
@@ -53,6 +53,7 @@ export const createCardAdmin = (array) => {
       .replace("%TITOLO", item.titolo)
       .replace("%TESTO", item.descrizione)
       .replace("%URL", item.copertina)
+      .replace("%ID", index)
       .replace("%ID", index)
       .replace("%ID", index)
       .replace("%ID", index);

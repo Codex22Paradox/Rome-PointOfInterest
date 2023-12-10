@@ -1,20 +1,47 @@
 import { addImg, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2 } from "/admin/admin.js";
 import { salvaDati, recuperaDati } from "/src/cache.js";
 import {createCardAdmin as createCard} from '/src/cards.js';
-
+const containerMain = document.getElementById("containerMain");
+const containerAccedi = document.getElementById("containerAccedi");
+const errore = document.getElementById("erroreAccedi");
 const card = document.getElementById("cards");
-
+const userName = document.getElementById("userName");
+const mostraPassword = document.getElementById("mostraPassword");
+const accediInvio = document.getElementById("accediInvio");
+const password = document.getElementById("password"); 
 const modal=new bootstrap.Modal("#modal1");
 const modal2=new bootstrap.Modal("#modal2");
+const img = document.getElementById("immaginePassword");
 
+mostraPassword.onclick = () => {
+  if (password.type === "password") {
+    password.type = "text";
+    img.src = img.src.replace("On", "Off");
+  } else {
+    password.type = "password";
+    img.src = img.src.replace("Off", "On");
+  }
+}
+
+accediInvio.onclick = () => {
+  //cardAccedi.classList.add("displayNone");
+ // cardSubmit.classList.remove("displayNone");
+  if(userName.value === "admin" && password.value === "admin"){
+    containerAccedi.classList.add("displayNone");
+    containerMain.classList.remove("displayNone");
+  }else {
+    errore.innerHTML = `<div class="alert alert-danger" role="alert">
+     CREDENZIALI ERRATE! Riprova
+    </div>`;
+  }
+  }
 const array = [];
 
 recuperaDati("POI")
 .then((data) => {
-  console.log(data);
   if (data.result.message !== "Does not exist") {
-    console.log("entrato");
      const savePoi = JSON.parse(data.result);
+    console.log(savePoi);
     for (let i = 0; i < savePoi.length; i++) {
         array.push(savePoi[i]);
     }
