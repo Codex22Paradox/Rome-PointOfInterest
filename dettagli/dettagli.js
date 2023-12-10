@@ -31,11 +31,11 @@ const template = `<div id="caroselliImmagini" class="carousel slide" data-bs-rid
   </div>`;
 
 const innerTemplate = `<div class="carousel-item">
-    <img src="%SRC" class="img-card img-fluid" alt="..." >
+    <img src="%SRC" class="img-card img-fluid" style="width: 25rem; height: 17rem;" alt="..." >
   </div>`;
 
 const innerTemplateActive = `<div class="carousel-item active">
-  <img src="%SRC" class="img-card img-fluid" alt="...">
+  <img src="%SRC" class="img-card img-fluid" style="width: 25rem; height: 17rem;" alt="...">
 </div>`;
 
 export const createCarousel = (dict) => {

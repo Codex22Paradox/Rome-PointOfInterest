@@ -52,7 +52,6 @@ recuperaDati("POI")
     }
   }
   card.innerHTML = createCard(array);
-
 });
 
 let tmp; 

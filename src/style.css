@@ -1,7 +1,8 @@
 body {
   font-family: 'MADE TOMMY', sans-serif;
   background-image: url("/src/Wallpaper.jpg");
-  background-size: cover;
+  background-repeat: repet;
+  background-size: auto;
 }
 
 h1 {
