@@ -12,6 +12,7 @@ const password = document.getElementById("password");
 const modal=new bootstrap.Modal("#modal1");
 const modal2=new bootstrap.Modal("#modal2");
 const img = document.getElementById("immaginePassword");
+const logout = document.getElementById("logout");
 
 mostraPassword.onclick = () => {
   if (password.type === "password") {
@@ -22,7 +23,11 @@ mostraPassword.onclick = () => {
     img.src = img.src.replace("Off", "On");
   }
 }
-
+if(localStorage.getItem("AccedutoAdmin") === "true"){
+  containerAccedi.classList.add("displayNone");
+  containerMain.classList.remove("displayNone");
+  localStorage.setItem("AccedutoAdmin", "false");
+}
 accediInvio.onclick = () => {
   //cardAccedi.classList.add("displayNone");
  // cardSubmit.classList.remove("displayNone");
@@ -121,12 +126,18 @@ document.getElementById("addButton").onclick = () => {
 card.addEventListener('click', e => {
   const type = e.target.id.split("-")[0];
   const id = e.target.id.split("-")[1];
-  if(type==="dettagli"){
+  if(type === "dettagli"){
+    localStorage.setItem("Provenienza", "Admin");
     localStorage.setItem("POI", JSON.stringify(array[id]));
-    window.open("dettagli.html");
+    window.location.replace("dettagli.html");
   }else if(type==="elimina"){
     array.splice(id,1);
     card.innerHTML=createCard(array);
     salvaDati(array, "POI");
   }
 })
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.replace("user.html");
+}

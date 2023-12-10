@@ -1,10 +1,9 @@
 import { createDetails, createTitle, createCarousel, createMap} from "/dettagli/dettagli.js";
 
 const poi = JSON.parse(localStorage.getItem("POI"));
-console.log(poi.lonlat);
+const provenienza = localStorage.getItem("Provenienza");
 const container = document.getElementById("popup");
 const centro = poi.lonlat; //coordinate Roma
-console.log(centro);
 const map = new ol.Map({
   target: document.querySelector(".map"),
   /*view: new ol.View({
@@ -13,8 +12,18 @@ const map = new ol.Map({
     maxZoom: 15,
   })*/
 });
-
-
+ document.getElementById("titoloNav").innerHTML += `<a id="backDettagli" class="nav-link active"><img width="30" height="30" src="icon/Back.svg" alt="Open"> ` + createTitle(poi) + `</a>`;
+const backDettagli = document.getElementById("backDettagli");
+backDettagli.onclick = () => {
+  console.log(provenienza);
+  if(provenienza === "User"){
+    localStorage.setItem("AccedutoUser", "true");
+    window.location.replace("user.html");
+  }else if(provenienza === "Admin"){
+    localStorage.setItem("AccedutoAdmin", "true");
+    window.location.replace("admin.html");
+  }
+}
 const dettagliTitolo = document.getElementById("dettagliTitolo");
 const dettagliTesto = document.getElementById("dettagliTesto");
 dettagliTitolo.innerHTML = createTitle(poi);
@@ -24,3 +33,9 @@ const dettagliImmagini = document.getElementById("dettagliImmagini");
 dettagliImmagini.innerHTML = createCarousel(poi);
 createMap(map, centro, 18, false);
 
+const logout = document.getElementById("logout");
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.replace("user.html");
+}

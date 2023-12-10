@@ -10,6 +10,7 @@ const mostraPassword = document.getElementById("mostraPassword");
 const accediInvio = document.getElementById("accediInvio");
 const password = document.getElementById("password"); 
 const img = document.getElementById("immaginePassword");
+const logout = document.getElementById("logout");
 
 mostraPassword.onclick = () => {
   if (password.type === "password") {
@@ -19,6 +20,12 @@ mostraPassword.onclick = () => {
     password.type = "password";
     img.src = img.src.replace("Off", "On");
   }
+}
+
+if(localStorage.getItem("AccedutoUser") === "true"){
+  containerAccedi.classList.add("displayNone");
+  containerMain.classList.remove("displayNone");
+  localStorage.setItem("AccedutoUser", "false");
 }
 
 accediInvio.onclick = () => {
@@ -51,6 +58,12 @@ recuperaDati("POI")
 card.addEventListener('click', e => {
   const id =  e.target.id.split("-")[1];
   console.log(array[id]);
+  localStorage.setItem("Provenienza", "User");
   localStorage.setItem("POI", JSON.stringify(array[id]));
-  window.open("dettagli.html");
+  window.location.replace("dettagli.html");
 })
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.replace("user.html");
+}
