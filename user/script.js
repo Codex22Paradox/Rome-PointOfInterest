@@ -11,6 +11,7 @@ const accediInvio = document.getElementById("accediInvio");
 const password = document.getElementById("password"); 
 const img = document.getElementById("immaginePassword");
 const logout = document.getElementById("logout");
+const divPasswordCookie = document.getElementById("cookiePassword");
 
 mostraPassword.onclick = () => {
   if (password.type === "password") {
@@ -21,6 +22,28 @@ mostraPassword.onclick = () => {
     img.src = img.src.replace("Off", "On");
   }
 }
+
+const salvaPass = document.getElementById("salvaPassword");
+
+salvaPass.onclick = () => {
+  Cookies.set("usernameAdmin", userName.value, { expires: 10 });
+  Cookies.set("passwordAdmin", password.value, { expires: 10 });
+}
+
+document.addEventListener("DOMContentLoaded", e => {
+  console.log("Entrato");
+  const nome = Cookies.get("usernameUser");
+  const passwordScelta = Cookies.get("passwordUser");    
+  console.log(password);
+  if(String(nome) !== "undefined" &&  String(passwordScelta) !== "undefined"){
+    userName.value = nome;
+    password.value = passwordScelta;
+    errore.innerHTML = `<div class="alert alert-success" role="alert">
+     Credenziali inserite in automatico
+    </div>`;
+  }
+});
+
 
 if(localStorage.getItem("AccedutoUser") === "true"){
   containerAccedi.classList.add("displayNone");
@@ -52,6 +75,10 @@ recuperaDati("POI")
     }
   }
   card.innerHTML = createCard(array);
+  const nome = Cookies.get("usernameUser");
+  if(String(nome) === "undefined"){
+    divPasswordCookie.classList.remove("displayNone");
+  }
 })
 
 

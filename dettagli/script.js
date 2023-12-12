@@ -1,5 +1,4 @@
 import { createDetails, createTitle, createCarousel, createMap} from "/dettagli/dettagli.js";
-
 const poi = JSON.parse(localStorage.getItem("POI"));
 const provenienza = localStorage.getItem("Provenienza");
 const container = document.getElementById("popup");

@@ -17,6 +17,53 @@ export function addImg(diz, link) {
   return diz;
 }
 
+//links è una nodelist con i value degli input che sono i link effettivi
+export function saveImg(links){
+  const array = [];
+  for (let i = 0; i < links.length-1; i++) {
+    if(links[i].value!==""){
+      array.unshift(links[i].value);
+    }
+  }
+  return array;
+}
+
+export function addImgInput(currentLast){
+  let html=`<div class="row">
+                    <div class="col">
+                      <input type="text" id="link-%ID" placeholder="Link immagine" class="form-control rounded-pill addLink">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-danger rounded-pill" id="removeLink-%ID" disabled><img width="30" height="30" src="icon/Remove.svg" alt="Open" id="removeLink-%ID"></button>
+                    </div>
+                  </div>
+                  <br>`;
+  html=html.replace("%ID",(currentLast+1));
+  html=html.replace("%ID",(currentLast+1));
+  html=html.replace("%ID",(currentLast+1));
+  return html;
+}
+
+export function loadLinkInputs(times) {
+  let template=`<div class="row">
+                    <div class="col">
+                      <input type="text" id="link-%ID" placeholder="Link immagine" class="form-control rounded-pill addLink">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-danger rounded-pill" id="removeLink-%ID"><img width="30" height="30" src="icon/Remove.svg" alt="Open" id="removeLink-%ID"></button>
+                    </div>
+                  </div>
+                  <br>`;
+  let html="";
+  for (let i = 0; i < times; i++) {
+    let rowhtml = template.replace("%ID",i);
+    rowhtml = rowhtml.replace("%ID",i);
+    rowhtml = rowhtml.replace("%ID",i);
+    html += rowhtml;
+  }
+  return html;
+}
+
 export function saveAll(diz, nome, descr, lat, lon, copertina) {
   diz.titolo = nome;
   diz.descrizione = descr;
@@ -31,6 +78,14 @@ export function saveLongDescr(diz, descr) {
   return diz;
 }
 
+export function trimArray(array) {
+  for (let index = 0; index < array.length; index++) {
+    if(array[i]===""){
+      array.splice(index,1);
+    }
+  }
+  return array;
+}
 
 //Funzione piglia il template della card e mostra le cose aggiunte (l'ultima foto inserita, il nome del POI e la descrizione breve); da richiamare ogni volta che si vuole updateare la card; da modificare il template per far venire il tutto decentemente
 export function updateCardMain(diz) {
@@ -115,10 +170,16 @@ export function check1(diz) {
 
 export function check2(diz) {
   let check=true;
-  if(diz.immagini.length<=0){
+  if(diz.testo===""){
     check=false;
   }
-  if(diz.testo===""){
+  return check;
+}
+
+export function check3(array) {
+  let check=true;
+  array=trimArray(array);
+  if(array.length===0){
     check=false;
   }
   return check;
@@ -165,3 +226,39 @@ export function resetCardSec() {
   html = html.replace("%TESTO", "...");
   return html;
 }
+
+
+const template = `<div id="caroselliImmagini" class="carousel slide" data-bs-ride="carousel" style="display: block;">
+    <div class="carousel-inner">
+      %ELEMENTI
+    <button class="carousel-control-prev" type="button" data-bs-target="#caroselliImmagini" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#caroselliImmagini" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>`;
+
+const innerTemplate = `<div class="carousel-item">
+    <img src="%SRC" class="img-card img-fluid" style="width: 25rem; height: 17rem;" alt="..." >
+  </div>`;
+
+const innerTemplateActive = `<div class="carousel-item active">
+  <img src="%SRC" class="img-card img-fluid" style="width: 25rem; height: 17rem;" alt="...">
+</div>`;
+
+export const createCarousel = (array) => {
+  if(array.length !== 0){
+  const totale = template;
+  let elementi = innerTemplateActive.replace("%SRC", array[0]);
+  for (let i = 1; i < array.length; i++) {
+    elementi += innerTemplate.replace("%SRC", array[i]);
+  }
+  console.log(elementi);
+  return totale.replace("%ELEMENTI", elementi);
+  }else{
+    return `<img src="img/placeholder.svg" class="img-card card-img-top img-fluid"      alt="...">`;
+  }
+};
