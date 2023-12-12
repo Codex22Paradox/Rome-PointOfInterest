@@ -58,7 +58,6 @@ recuperaDati("POI")
   }
   card.innerHTML = createCard(array);
   const nome = Cookies.get("usernameAdmin");
-  console.log(nome);
   if(String(nome) === "undefined"){
     divPasswordCookie.classList.remove("displayNone");
   }
@@ -135,12 +134,11 @@ document.getElementById("modal2").addEventListener('click', e => {
 });
 
 //TODO disabilitare solo l'ultimo pulsante
-document.getElementById("modal3").addEventListener('click', e => {
+document.getElementById("formAggiuntaLink").addEventListener('click', e => {
   let type = e.target.id.split("-")[0];
   let id = e.target.id.split("-")[1];
   let elements = document.querySelectorAll(".addLink");
   tmp.immagini = saveImg(elements);
-  console.log(tmp.immagini);
   if(type === "link"){
     if(id === elements[elements.length-1].id.split("-")[1]){
       let empty=-1;
@@ -150,7 +148,6 @@ document.getElementById("modal3").addEventListener('click', e => {
         }
       }
       if(elements.length != 1){
-        console.log(tmp.immagini)
         document.getElementById("linkContainer").innerHTML = loadLinkInputs(tmp.immagini.length+1+empty) + addImgInput(id*1);
         for (let index = 0; index < tmp.immagini.length; index++) {
           document.getElementById("link-"+index).value = tmp.immagini[index];
@@ -164,7 +161,6 @@ document.getElementById("modal3").addEventListener('click', e => {
     if(document.getElementById("link-"+id).value!=""){
       tmp.immagini.splice(tmp.immagini.indexOf(document.getElementById("link-"+id).value),1);
     }
-    //console.log(tmp.immagini)
     //id = tmp.immagini.length+2;
     if(tmp.immagini.length==0){
       document.getElementById("linkContainer").innerHTML = loadLinkInputs(1);
@@ -184,9 +180,7 @@ document.getElementById("modal3").addEventListener('click', e => {
 
 //salvataggio nuovo POI nell'array
 document.getElementById("addButton").onclick = () => {
-  console.log("funzia")
   console.log(check3(tmp.immagini));
-  console.log(tmp.immagini);
   /*if(check3(tmp.immagini)){
     tmp.immagini=trimArray(tmp.immagini);
     array.push(tmp);
@@ -228,7 +222,6 @@ document.addEventListener("DOMContentLoaded", e => {
   console.log("Entrato");
   const nome = Cookies.get("usernameAdmin");
   const passwordScelta = Cookies.get("passwordAdmin");    
-  console.log(password);
   if(String(nome) !== "undefined" &&  String(passwordScelta) !== "undefined"){
     userName.value = nome;
     password.value = passwordScelta;
