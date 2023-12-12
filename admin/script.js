@@ -26,6 +26,8 @@ mostraPassword.onclick = () => {
   }
 }
 
+//test commit -mael
+
 if(localStorage.getItem("AccedutoAdmin") === "true"){
   containerAccedi.classList.add("displayNone");
   containerMain.classList.remove("displayNone");
