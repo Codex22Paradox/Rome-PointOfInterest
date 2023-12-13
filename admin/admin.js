@@ -21,7 +21,7 @@ export function saveImg(links){
 export function addImgInput(currentLast){
   let html=`<div class="row">
                     <div class="col">
-                      <input type="text" id="link-%ID" placeholder="Link immagine" class="form-control rounded-pill addLink">
+                      <input type="url" id="link-%ID" placeholder="Link immagine" class="form-control rounded-pill addLink">
                     </div>
                     <div class="col">
                       <button class="btn btn-danger rounded-pill" id="removeLink-%ID" disabled><img width="30" height="30" src="icon/Remove.svg" alt="Open" id="removeLink-%ID"></button>

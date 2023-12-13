@@ -94,7 +94,9 @@ table tbody tr td {
   background: rgba(33, 37, 41, 0.7);
   border-radius: 30px;
 }
-
+.border-white{
+  border: 1px solid white;
+}
 .table-custom {
   background-color: rgba(33, 37, 41, 0);
 

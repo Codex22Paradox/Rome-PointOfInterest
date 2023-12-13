@@ -3,6 +3,9 @@ const poi = JSON.parse(localStorage.getItem("POI"));
 const provenienza = localStorage.getItem("Provenienza");
 const container = document.getElementById("popup");
 const centro = poi.lonlat; //coordinate Roma
+const buttonExtendNav = document.getElementById('buttonExtendNav');
+const navbar = document.getElementById('navbar');
+let boolNav = false;
 const map = new ol.Map({
   target: document.querySelector(".map"),
   /*view: new ol.View({
@@ -11,6 +14,19 @@ const map = new ol.Map({
     maxZoom: 15,
   })*/
 });
+
+buttonExtendNav.onclick = () => {
+  if(!boolNav){
+    navbar.classList.remove("rounded-pill");
+    navbar.classList.add("rounded");
+    boolNav = true;
+  }else{
+    navbar.classList.remove("rounded");
+    navbar.classList.add("rounded-pill");
+    boolNav = false;
+  }
+}
+
  document.getElementById("titoloNav").innerHTML += `<a id="backDettagli" class="nav-link active"><img width="30" height="30" src="icon/Back.svg" alt="Open"> ` + createTitle(poi) + `</a>`;
 const backDettagli = document.getElementById("backDettagli");
 backDettagli.onclick = () => {

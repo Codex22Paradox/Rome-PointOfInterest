@@ -16,6 +16,9 @@ const img = document.getElementById("immaginePassword");
 const logout = document.getElementById("logout");
 const divPasswordCookie = document.getElementById("cookiePassword");
 const caruselAdd = document.getElementById("caruselAdd");
+const buttonExtendNav = document.getElementById('buttonExtendNav');
+const navbar = document.getElementById('navbar');
+let boolNav = false;
 let modifica;
 let modificaId;
 
@@ -26,6 +29,18 @@ mostraPassword.onclick = () => {
   } else {
     password.type = "password";
     img.src = img.src.replace("Off", "On");
+  }
+}
+
+buttonExtendNav.onclick = () => {
+  if(!boolNav){
+    navbar.classList.remove("rounded-pill");
+    navbar.classList.add("rounded");
+    boolNav = true;
+  }else{
+    navbar.classList.remove("rounded");
+    navbar.classList.add("rounded-pill");
+    boolNav = false;
   }
 }
 
@@ -129,7 +144,7 @@ document.getElementById("goToModal3").onclick=()=>{
 }
 
 document.getElementById("modal1").addEventListener('show.bs.modal', e => {
-  tmp = array[modificaId];
+  tmp = JSON.parse(JSON.stringify(array[modificaId]));
   if(modifica){
     document.getElementById("titolo").value=tmp.titolo;
     document.getElementById("breveDescr").value=tmp.descrizione;
@@ -174,6 +189,7 @@ document.getElementById("modal2").addEventListener('click', e => {
   }
   currentElement = e.target.id;
 });
+
 //TODO disabilitare solo l'ultimo pulsante
 document.getElementById("formLink").addEventListener('click', e => {
   let type = e.target.id.split("-")[0];

@@ -19,22 +19,22 @@
 <body>
   <br>
   <div class="container">
-    <nav class="navbar navbar-custom navbar-expand-lg rounded-pill">
+    <nav class="navbar navbar-custom navbar-expand-lg rounded-pill" id="navbar">
       <div class="container-fluid">
         <a class="navbar-brand text-white" href="#" id="titoloNav"> </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <div data-bs-theme="dark">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id="buttonExtendNav"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
         </div>
-        <div class="row">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active text-white">DETTAGLI</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg" alt="Open"></a>
+              <a href="user.html" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg" alt="Open"></a>
             </li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
       <div class="col-auto" style="width: 50%;">
         <div class="card " style="height: 100;">
           <div class="card-body">
-            <h1 class="card-title text-white" id="dettagliTitolo"></h1>
+            <h1 class="card-title text-white text-uppercase" id="dettagliTitolo"></h1>
             <br>
             <p class="text-center text-white" id="dettagliTesto">
 

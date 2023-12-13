@@ -70,25 +70,22 @@
       <div class="row"><div class="col">Salvare la password?</div> <div class="col"><button type="button" class="btn btn-primary" id="salvaPassword" data-bs-dismiss="alert">Salva</button></div></div>  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <!-- Navbar -->
-    <nav class="navbar navbar-custom navbar-expand-lg sticky-top rounded-pill">
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top rounded-pill" id="navbar">
       <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">ROMA - La città eterna</a>
+        <div data-bs-theme="dark">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="buttonExtendNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
         </div>
-        <div class="row">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active text-white" id="descrizioneUser">ELENCO</a>
+              <a title="Cambia modalità di visualizzazione" href="#" class="nav-link active text-white" id="switchMap"><span id="descrizioneUser">ELENCO</span><img width="30" height="30" src="icon/Map.svg" id="immagineMappaUser" alt="Open"></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link active" id="switchMap"><img width="30" height="30" src="icon/Map.svg" id="immagineMappaUser" alt="Open"></a>
-            </li>
-            <li class="nav-item">
-              <a href="user.html" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg"
+              <a href="user.html" title="logout" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg"
                   alt="Open" title="Logut"></a>
             </li>
           </ul>
@@ -103,7 +100,7 @@
         <div class="map" style="height: 80vh; width: auto;"></div>
         <div id="popup" class="ol-popup">
              <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-             <div id="popup-content"></div>
+             <div id="popup-content" class="text-lowercase"></div>
          </div>
         </div>
       </div>

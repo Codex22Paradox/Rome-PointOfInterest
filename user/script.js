@@ -21,6 +21,9 @@ const mappaUser = document.getElementById("mappaUser");
 const container = document.getElementById('popup');
 const content = document.getElementById('popup-content');
 const closer = document.getElementById('popup-closer');
+const buttonExtendNav = document.getElementById('buttonExtendNav');
+const navbar = document.getElementById('navbar');
+let boolNav = false;
 let overlay;
 
 const centro = ["12.4963655", "41.9027835"]; //coordinate Roma
@@ -75,6 +78,17 @@ mostraPassword.onclick = () => {
   }
 }
 
+buttonExtendNav.onclick = () => {
+  if(!boolNav){
+    navbar.classList.remove("rounded-pill");
+    navbar.classList.add("rounded");
+    boolNav = true;
+  }else{
+    navbar.classList.remove("rounded");
+    navbar.classList.add("rounded-pill");
+    boolNav = false;
+  }
+}
 const salvaPass = document.getElementById("salvaPassword");
 
 salvaPass.onclick = () => {

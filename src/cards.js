@@ -7,7 +7,7 @@ const templateUser = `<div class="col-auto">
         </div>
         <div class="card-footer">
         <div class="row justify-content-end">
-          <div class="col-auto"><button type="button" class="btn btn-outline-primary" id="dettagli-%ID"><img width="30" height="30" src="icon/Open.svg" alt="Open" id="dettagli-%ID"></button></div><br><br>
+          <div class="col-auto"><button type="button" class="btn btn-outline-primary rounded-pill" id="dettagli-%ID"><img width="30" height="30" src="icon/Open.svg" alt="Open" id="dettagli-%ID"></button></div><br><br>
           </div>
       </div>
     </div>

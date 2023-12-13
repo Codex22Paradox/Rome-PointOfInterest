@@ -66,17 +66,17 @@
       <div class="alert alert-info alert-dismissible displayNone rounded-pill" role="alert" id="cookiePassword">
         <div class="row"><div class="col">Salvare la password?</div> <div class="col"><button type="button" class="btn btn-primary" id="salvaPassword" data-bs-dismiss="alert">Salva</button></div></div>  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    <nav class="navbar navbar-custom navbar-expand-lg sticky-top rounded-pill">
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top rounded-pill" id="navbar">
       <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">  ROMA - La città eterna</a>
+        <div data-bs-theme="dark">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="buttonExtendNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
         </div>
-        <div class="row">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active text-white">ADMIN</a>
             </li>
@@ -100,7 +100,7 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header bg-dark">
-          <h1 class="modal-title fs-5" id="modal1Title">Aggiungi point of interest</h1>
+          <h1 class="modal-title fs-5 text-white" id="modal1Title">Aggiungi point of interest</h1>
           <div data-bs-theme="dark">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -119,7 +119,7 @@
                     <br>
                     <div class="row">
                     <div class="col">
-                      <textarea class="form-control" placeholder="Breve descrizione" id="breveDescr" required></textarea>
+                      <textarea class="form-control" placeholder="Breve descrizione" id="breveDescr" rows="7" required></textarea>
                     </div>
                   </div>
                     <br>
@@ -134,7 +134,7 @@
                     <br>
                     <div class="row">
                     <div class="col">
-                      <input type="text" id="copertina" placeholder="Link immagine" class="form-control rounded-pill" required>
+                      <input type="url" id="copertina" placeholder="Link immagine" class="form-control rounded-pill" required>
                     </div>
                     <!--<div class="col">
                       <button class="btn btn-primary rounded-pill" id="addCopertina"><img width="30" height="30" src="icon/Add.svg" alt="Open"></button>
@@ -192,7 +192,7 @@
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col">
-                      <textarea class="form-control" placeholder="Descrizione" id="descrLunga" required></textarea>
+                      <textarea class="form-control" placeholder="Descrizione" id="descrLunga" rows="15" required></textarea>
                     </div>
                   </div>
                   <br>
@@ -208,15 +208,9 @@
                 <div class="col-auto">
                   <div class="card text-white" style="width: 20rem; height: 27rem;" id="addCard2">
                     <img src="img/placeholder.svg" class="img-card card-img-top img-fluid" alt="...">
-                    <div class="card-body">
+                    <div class="card-body border border-light">
                       <h5 class="card-title text-center">...</h5>
                       <p class="card-text">...</p>
-                    </div>
-                    <div class="card-footer">
-                      <div class="row justify-content-end">
-                        <div class="col-auto"><button type="button" class="btn btn-outline-primary"><img width="30"
-                              height="30" src="icon/Open.svg" alt="Open"></button></div><br><br>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -247,7 +241,7 @@
                 <div class="container-fluid" id="linkContainer">
                   <div class="row">
                     <div class="col">
-                      <input type="text" id="link-0" placeholder="Link immagine" class="form-control rounded-pill addLink">
+                      <input type="url" id="link-0" placeholder="Link immagine" class="form-control rounded-pill addLink">
                     </div>
                     <div class="col">
                       <button class="btn btn-danger rounded-pill" id="removeLink-0" disabled><img width="30" height="30" src="icon/Remove.svg" alt="Open" id="removeLink-0"></button>
@@ -268,7 +262,7 @@
                 <div class="col-auto">
                   <div class="card text-white">      
                     <div class="card-body" id="caruselAdd">
-                      
+                      <img src="img/placeholder.svg" class="img-card card-img-top img-fluid"      alt="...">
                     </div>
                     <div class="card-footer">
                       <div class="row justify-content-end">
