@@ -78,6 +78,8 @@ export const createCardAdmin = (array) => {
       .replace("%ID", index)
       .replace("%ID", index)
       .replace("%ID", index)
+      .replace("%ID", index)
+      .replace("%ID", index)
       .replace("%ID", index);
   });
   return card;

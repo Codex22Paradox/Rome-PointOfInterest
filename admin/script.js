@@ -224,21 +224,22 @@ document.getElementById("formLink").addEventListener('click', e => {
 
 //salvataggio nuovo POI nell'array
 document.getElementById("addButton").onclick = () => {
-  console.log("funzia")
-  console.log(check3(tmp.immagini));
-  console.log(tmp);
-  /*if(check3(tmp.immagini)){
-    array.push(tmp);
+  if(check3(tmp.immagini)){
+    if(modifica)
+      array[modificaId] = tmp;
+    else
+      array.push(tmp);
     modal3.hide();
-    document.getElementById("cards").innerHTML = createCard(array);
-    console.log(array);
+    document.getElementById("cards").innerHTML =     
+    createCard(array);
     salvaDati(array, "POI");
-  }*/
+  }
 }
 
 card.addEventListener('click', e => {
   const type = e.target.id.split("-")[0];
   const id = e.target.id.split("-")[1];
+  console.log("ID");
   console.log("type: "+ type+" id: "+id);
   if(type === "dettagli"){
     localStorage.setItem("Provenienza", "Admin");
