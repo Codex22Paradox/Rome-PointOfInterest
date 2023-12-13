@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", e => {
   if(String(nome) !== "undefined" &&  String(passwordScelta) !== "undefined"){
     userName.value = nome;
     password.value = passwordScelta;
-    errore.innerHTML = `<div class="alert alert-success" role="alert">
+    errore.innerHTML = `<div class="alert alert-success rounded-pill" role="alert">
      Credenziali inserite in automatico
     </div>`;
   }
@@ -109,7 +109,7 @@ accediInvio.onclick = () => {
         containerAccedi.classList.add("displayNone");
         containerMain.classList.remove("displayNone");
       } else {
-        errore.innerHTML = `<div class="alert alert-danger" role="alert">
+        errore.innerHTML = `<div class="alert alert-danger rounded-pill" role="alert">
          CREDENZIALI ERRATE! Riprova
         </div>`;
       }

@@ -23,28 +23,13 @@ const templateAdmin = `<div class="col-auto">
       <div class="card-footer">
       <div class="row justify-content-end">
       <div class="col-auto">
-        <button type="button" class="btn btn-outline-info" id="modifica-%ID"><img width="30" height="30" src="icon/Edit.svg" alt="Open" id="modifica-%ID"></button>
+        <button type="button" class="btn btn-outline-info rounded-pill" id="modifica-%ID"><img width="30" height="30" src="icon/Edit.svg" alt="Open" id="modifica-%ID"></button>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn btn-outline-danger" id="elimina-%ID" data-bs-toggle="modal" data-bs-target="#sicuroModal"><img width="30" height="30" src="icon/Delete.svg" alt="Open" id="elimina-%ID"></button>
-
-        <div class="modal fade" id="sicuroModal" tabindex="-1" aria-labelledby="sicuroModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="sicuroModalLabel"> SICURO DI VOLER ELIMINARE?</h1>
-                <button type="button" id="nonSicuro" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-footer">
-                <button type="button" id="nonSicuro" class="btn btn-secondary" data-bs-dismiss="modal"> Non voglio eliminare </button>
-                <button type="button" id="Sicuro" class="btn btn-primary">Elimina POI</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button type="button" class="btn btn-outline-danger rounded-pill" id="elimina-%ID" data-bs-toggle="modal" data-bs-target="#sicuroModal"><img width="30" height="30" src="icon/Delete.svg" alt="Open" id="elimina-%ID"></button>
 
       </div>
-        <div class="col-auto"><button type="button" class="btn btn-outline-primary" id="dettagli-%ID"><img width="30" height="30" src="icon/Open.svg" alt="Open" id="dettagli-%ID"></button></div><br><br>
+        <div class="col-auto"><button type="button" class="btn btn-outline-primary rounded-pill" id="dettagli-%ID"><img width="30" height="30" src="icon/Open.svg" alt="Open" id="dettagli-%ID"></button></div><br><br>
         </div>
     </div>
   </div>

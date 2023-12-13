@@ -7,16 +7,6 @@ const example = {
   "testo": ""  //descrizione lunga
 }
 
-export function addCop(diz, link) {
-  diz.immagini.push(link);
-  return diz;
-}
-
-export function addImg(diz, link) {
-  diz.immagini.push(link);
-  return diz;
-}
-
 //links è una nodelist con i value degli input che sono i link effettivi
 export function saveImg(links){
   const array = [];
