@@ -78,15 +78,6 @@ export function saveLongDescr(diz, descr) {
   return diz;
 }
 
-export function trimArray(array) {
-  for (let index = 0; index < array.length; index++) {
-    if(array[i]===""){
-      array.splice(index,1);
-    }
-  }
-  return array;
-}
-
 //Funzione piglia il template della card e mostra le cose aggiunte (l'ultima foto inserita, il nome del POI e la descrizione breve); da richiamare ogni volta che si vuole updateare la card; da modificare il template per far venire il tutto decentemente
 export function updateCardMain(diz) {
   const template = `<div class="col-auto">
@@ -178,7 +169,6 @@ export function check2(diz) {
 
 export function check3(array) {
   let check=true;
-  array=trimArray(array);
   if(array.length===0){
     check=false;
   }

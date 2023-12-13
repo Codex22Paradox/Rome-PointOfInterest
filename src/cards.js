@@ -27,7 +27,7 @@ const templateAdmin = `<div class="col-auto">
       </div>
       <div class="col-auto">
         <button type="button" class="btn btn-outline-danger" id="elimina-%ID" data-bs-toggle="modal" data-bs-target="#sicuroModal"><img width="30" height="30" src="icon/Delete.svg" alt="Open" id="elimina-%ID"></button>
-        
+
         <div class="modal fade" id="sicuroModal" tabindex="-1" aria-labelledby="sicuroModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -42,7 +42,7 @@ const templateAdmin = `<div class="col-auto">
             </div>
           </div>
         </div>
-        
+
       </div>
         <div class="col-auto"><button type="button" class="btn btn-outline-primary" id="dettagli-%ID"><img width="30" height="30" src="icon/Open.svg" alt="Open" id="dettagli-%ID"></button></div><br><br>
         </div>

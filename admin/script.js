@@ -1,4 +1,4 @@
-import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, trimArray, check1, check2, check3, createCarousel } from "/admin/admin.js";
+import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2, check3, createCarousel } from "/admin/admin.js";
 import { salvaDati, recuperaDati } from "/src/cache.js";
 import {createCardAdmin as createCard} from '/src/cards.js';
 const containerMain = document.getElementById("containerMain");
@@ -9,13 +9,16 @@ const userName = document.getElementById("userName");
 const mostraPassword = document.getElementById("mostraPassword");
 const accediInvio = document.getElementById("accediInvio");
 const password = document.getElementById("password"); 
-const modal=new bootstrap.Modal("#modal1");
-const modal2=new bootstrap.Modal("#modal2");
-const modal3=new bootstrap.Modal("#modal3");
+const modal1 = new bootstrap.Modal("#modal1");
+const modal2 = new bootstrap.Modal("#modal2");
+const modal3 = new bootstrap.Modal("#modal3");
 const img = document.getElementById("immaginePassword");
 const logout = document.getElementById("logout");
 const divPasswordCookie = document.getElementById("cookiePassword");
 const caruselAdd = document.getElementById("caruselAdd");
+let modifica;
+let modificaId;
+
 mostraPassword.onclick = () => {
   if (password.type === "password") {
     password.type = "text";
@@ -25,8 +28,6 @@ mostraPassword.onclick = () => {
     img.src = img.src.replace("Off", "On");
   }
 }
-
-//test commit -mael
 
 if(localStorage.getItem("AccedutoAdmin") === "true"){
   containerAccedi.classList.add("displayNone");
@@ -45,6 +46,11 @@ accediInvio.onclick = () => {
      CREDENZIALI ERRATE! Riprova
     </div>`;
   }
+  const nome = Cookies.get("usernameAdmin");
+  const passwordSalvata = Cookies.get("passwordAdmin");
+  if(String(nome) !== userName.value && String(passwordSalvata) !== password.value ){
+    divPasswordCookie.classList.remove("displayNone");
+  }
 }
 
 const array = [];
@@ -60,7 +66,8 @@ recuperaDati("POI")
   }
   card.innerHTML = createCard(array);
   const nome = Cookies.get("usernameAdmin");
-  if(String(nome) === "undefined"){
+  const passwordSalvata = Cookies.get("passwordAdmin");
+  if(String(nome) === "undefined" ){
     divPasswordCookie.classList.remove("displayNone");
   }
 });
@@ -71,6 +78,10 @@ let currentElement = "";
 
 //apertura modal1
 document.getElementById("button1").onclick=()=>{
+  document.getElementById("modal1Title").innerText="Aggiungi point of interest";
+  document.getElementById("modal2Title").innerText="Aggiungi point of interest";
+  document.getElementById("modal3Title").innerText="Aggiungi point of interest";
+  modifica=false;
   tmp = {
     "titolo": "",
     "lonlat": [],  //lon lat
@@ -102,7 +113,7 @@ document.getElementById("goToModal2").onclick = () => {
   document.getElementById("cardModal1").innerHTML = updateCardMain(tmp);
   if(check1(tmp)){
     document.getElementById("cardModal2").innerHTML = updateCardSec(tmp);
-    modal.hide();
+    modal1.hide();
     modal2.show();
   }
 }
@@ -116,6 +127,35 @@ document.getElementById("goToModal3").onclick=()=>{
     modal3.show();
   }
 }
+
+document.getElementById("modal1").addEventListener('show.bs.modal', e => {
+  tmp = array[modificaId];
+  if(modifica){
+    document.getElementById("titolo").value=tmp.titolo;
+    document.getElementById("breveDescr").value=tmp.descrizione;
+    document.getElementById("lat").value=tmp.lonlat[1];
+    document.getElementById("lon").value=tmp.lonlat[0];
+    document.getElementById("copertina").value=tmp.copertina;
+    document.getElementById("cardModal1").innerHTML = updateCardMain(tmp);
+  }
+});
+
+document.getElementById("modal2").addEventListener('show.bs.modal', e => {
+  if(modifica){
+    document.getElementById("descrLunga").value=tmp.testo;
+    document.getElementById("cardModal2").innerHTML = updateCardSec(tmp);
+  }
+});
+
+document.getElementById("modal3").addEventListener('show.bs.modal', e => {
+  if (modifica) {
+    document.getElementById("linkContainer").innerHTML = loadLinkInputs(tmp.immagini.length+1) + addImgInput(tmp.immagini.length*1);
+    for (let index = 0; index < tmp.immagini.length; index++) {
+      document.getElementById("link-"+index).value = tmp.immagini[index];
+    }
+    document.getElementById("caruselAdd").innerHTML = createCarousel(tmp.immagini);
+  }
+});
 
 //salkvataggio degli elementi del dizionario nel modal1
 document.getElementById("modal1").addEventListener('click', e => {
@@ -134,13 +174,13 @@ document.getElementById("modal2").addEventListener('click', e => {
   }
   currentElement = e.target.id;
 });
-
 //TODO disabilitare solo l'ultimo pulsante
-document.getElementById("formAggiuntaLink").addEventListener('click', e => {
+document.getElementById("formLink").addEventListener('click', e => {
   let type = e.target.id.split("-")[0];
   let id = e.target.id.split("-")[1];
   let elements = document.querySelectorAll(".addLink");
   tmp.immagini = saveImg(elements);
+  console.log(tmp.immagini);
   if(type === "link"){
     if(id === elements[elements.length-1].id.split("-")[1]){
       let empty=-1;
@@ -150,6 +190,7 @@ document.getElementById("formAggiuntaLink").addEventListener('click', e => {
         }
       }
       if(elements.length != 1){
+        console.log(tmp.immagini)
         document.getElementById("linkContainer").innerHTML = loadLinkInputs(tmp.immagini.length+1+empty) + addImgInput(id*1);
         for (let index = 0; index < tmp.immagini.length; index++) {
           document.getElementById("link-"+index).value = tmp.immagini[index];
@@ -163,6 +204,7 @@ document.getElementById("formAggiuntaLink").addEventListener('click', e => {
     if(document.getElementById("link-"+id).value!=""){
       tmp.immagini.splice(tmp.immagini.indexOf(document.getElementById("link-"+id).value),1);
     }
+    //console.log(tmp.immagini)
     //id = tmp.immagini.length+2;
     if(tmp.immagini.length==0){
       document.getElementById("linkContainer").innerHTML = loadLinkInputs(1);
@@ -182,9 +224,10 @@ document.getElementById("formAggiuntaLink").addEventListener('click', e => {
 
 //salvataggio nuovo POI nell'array
 document.getElementById("addButton").onclick = () => {
+  console.log("funzia")
   console.log(check3(tmp.immagini));
+  console.log(tmp);
   /*if(check3(tmp.immagini)){
-    tmp.immagini=trimArray(tmp.immagini);
     array.push(tmp);
     modal3.hide();
     document.getElementById("cards").innerHTML = createCard(array);
@@ -196,6 +239,7 @@ document.getElementById("addButton").onclick = () => {
 card.addEventListener('click', e => {
   const type = e.target.id.split("-")[0];
   const id = e.target.id.split("-")[1];
+  console.log("type: "+ type+" id: "+id);
   if(type === "dettagli"){
     localStorage.setItem("Provenienza", "Admin");
     localStorage.setItem("POI", JSON.stringify(array[id]));
@@ -208,6 +252,8 @@ card.addEventListener('click', e => {
     salvaDati(array, "POI");
     }
   }else if (type==="modifica") {
+    modifica=true;
+    modificaId=id;
     document.getElementById("modal1Title").innerText="Modifica point of interest";
     document.getElementById("modal2Title").innerText="Modifica point of interest";
     document.getElementById("modal3Title").innerText="Modifica point of interest";
@@ -221,9 +267,9 @@ logout.onclick = () => {
 }
 
 document.addEventListener("DOMContentLoaded", e => {
-  console.log("Entrato");
   const nome = Cookies.get("usernameAdmin");
   const passwordScelta = Cookies.get("passwordAdmin");    
+  console.log(password);
   if(String(nome) !== "undefined" &&  String(passwordScelta) !== "undefined"){
     userName.value = nome;
     password.value = passwordScelta;
@@ -239,4 +285,3 @@ salvaPass.onclick = () => {
   Cookies.set("usernameAdmin", userName.value, { expires: 10 });
   Cookies.set("passwordAdmin", password.value, { expires: 10 });
 }
-

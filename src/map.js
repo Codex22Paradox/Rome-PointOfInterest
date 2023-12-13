@@ -9,18 +9,8 @@ Funzione per settare il primo layers
 @param dark => boolean, gestisce il tema della mappa e dell'applicazione
 */
 export function setLayers(map, dark) {
-  const layers = [new ol.layer.Tile({ source: new ol.source.OSM() })]; // crea un layer da Open Street Maps
-  map.addLayer(new window.ol.layer.Group({ layers })); // lo aggiunge alla mappa
-  if (dark)
-    map.on("postcompose", function (e) {
-      document.querySelector("canvas").style.filter =
-        "invert(100) hue-rotate(180deg)";
-    });
-  else
-    map.on("postcompose", function (e) {
-      document.querySelector("canvas").style.filter =
-        "invert(0) hue-rotate(0deg)";
-    });
+  const layers = [new ol.layer.Tile({source: new ol.source.OSM()})]; // crea un layer da Open Street Maps
+  map.addLayer(new window.ol.layer.Group({layers})); // lo aggiunge alla mappa
 }
 
 /** 
@@ -50,23 +40,22 @@ Funzione per aggiungere un marker nella mappa
 */
 export function addMarker(map, point) {
   const feature = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat(point.lonlat)),
-  }); //creo il punto
-  feature.name = point.name; //assegno al punto un nome
-  const layer = new ol.layer.Vector({
-    source: new ol.source.Vector({
-      features: [feature],
-    }),
-    style: new ol.style.Style({
-      image: new ol.style.Icon({
-        anchor: [0.5, 1],
-        crossOrigin: "anonymous",
-        src: "https://docs.maptiler.com/openlayers/default-marker/marker-icon.png",
-      }),
-    }),
+         geometry: new ol.geom.Point(ol.proj.fromLonLat(point.lonlat))                
   });
-  map.addLayer(layer); //aggiunta del layer alla mappa
-  return [feature, layer];
+  feature.name = point.name;  
+  const layer = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [feature]
+     }),
+    style: new ol.style.Style({
+        image: new ol.style.Icon({
+        anchor: [0.5, 1],
+        crossOrigin: 'anonymous',
+        src: 'https://docs.maptiler.com/openlayers/default-marker/marker-icon.png',
+        })
+    })
+  });  
+  map.addLayer(layer);  
 }
 
 /** 
@@ -99,35 +88,41 @@ export function removeMarker(map, point) {
 Funzione per visualizzare, alla pressione del segnaposto del point, il nome
 @param map => oggetto contenente la mappa
 */
-export function initOverlay(map) {
+export function initOverlay(map, points) {
   overlay = new ol.Overlay({
-    element: container,
-    autoPan: true,
-    autoPanAnimation: {
-      duration: 250,
-    },
-  });
+       element: container,
+       autoPan: true,
+       autoPanAnimation: {
+           duration: 250
+       }
+   });
   map.addOverlay(overlay);
-  closer.onclick = function () {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return false;
+  closer.onclick = function() {
+     overlay.setPosition(undefined);
+     closer.blur();
+     return false;
   };
 
-  map.on("singleclick", function (event) {
-    if (map.hasFeatureAtPixel(event.pixel) === true) {
-      // se esiste un marker
-      map.forEachFeatureAtPixel(event.pixel, (feature, layer) => {
-        // lo recupera
-        const coordinate = event.coordinate; // ne prende le coordinate
-        content.innerHTML = feature.name; // cambia il testo del popup
-        overlay.setPosition(coordinate); // e lo sposta sopra il marker
-      });
-    } else {
-      overlay.setPosition(undefined); // altrimenti lo nasconde
-      closer.blur();
-    }
-  });
+   map.on('singleclick', function (event) {
+       if (map.hasFeatureAtPixel(event.pixel) === true) { // se esiste un marker
+         map.forEachFeatureAtPixel(event.pixel, (feature, layer) => { // lo recupera
+           const coordinate = event.coordinate; // ne prende le coordinate
+           const index = trovaIndicePerTitolo(points, feature.name);
+            content.innerHTML = feature.name; // cambia il testo del popup
+            content.onclick = () =>{
+            localStorage.setItem("Provenienza", "User");
+            localStorage.setItem("Precisione", "Mappa");
+            localStorage.setItem("POI", JSON.stringify(points[index]));
+            window.location.replace("dettagli.html");
+           }
+            overlay.setPosition(coordinate); // e lo sposta sopra il marker
+         })           
+       } else {
+           overlay.setPosition(undefined); // altrimenti lo nasconde
+           closer.blur();
+       }
+   });
+
 }
 
 /** 
@@ -139,4 +134,13 @@ export function creaVector(array) {
   return new ol.source.Vector({
     features: array,
   });
+}
+
+const trovaIndicePerTitolo = (array, titoloDaCercare) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].titolo === titoloDaCercare) {
+      return i; // Restituisce l'indice se il titolo è trovato
+    }
+  }
+  return -1; // Restituisce -1 se il titolo non è presente nell'array
 }
