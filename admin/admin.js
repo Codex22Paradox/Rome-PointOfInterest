@@ -242,3 +242,10 @@ export const createCarousel = (array) => {
     return `<img src="img/placeholder.svg" class="img-card card-img-top img-fluid"      alt="...">`;
   }
 };
+
+export const textCounter = (field, countfield, maxlimit) => {
+  if (field.value.length > maxlimit) 
+    field.value = field.value.substring( 0, maxlimit );
+  else
+    countfield.value = field.value.length + "/150";
+}

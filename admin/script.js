@@ -1,4 +1,4 @@
-import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2, check3, createCarousel } from "/admin/admin.js";
+import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2, check3, createCarousel, textCounter } from "/admin/admin.js";
 import { salvaDati, recuperaDati } from "/src/cache.js";
 import {createCardAdmin as createCard} from '/src/cards.js';
 const containerMain = document.getElementById("containerMain");
@@ -123,6 +123,10 @@ document.getElementById("addLink").onclick = () => {
 }
 */
 //apertura modal2
+document.getElementById("breveDescr").addEventListener("keyup", (e) => {
+  textCounter(document.getElementById("breveDescr"), document.getElementById('counter'), 150);
+});
+
 document.getElementById("goToModal2").onclick = () => {
   saveAll(tmp, document.getElementById("titolo").value, document.getElementById("breveDescr").value, document.getElementById("lat").value, document.getElementById("lon").value, document.getElementById("copertina").value);
   document.getElementById("cardModal1").innerHTML = updateCardMain(tmp);
@@ -144,8 +148,8 @@ document.getElementById("goToModal3").onclick=()=>{
 }
 
 document.getElementById("modal1").addEventListener('show.bs.modal', e => {
-  tmp = JSON.parse(JSON.stringify(array[modificaId]));
   if(modifica){
+    tmp = JSON.parse(JSON.stringify(array[modificaId]));
     document.getElementById("titolo").value=tmp.titolo;
     document.getElementById("breveDescr").value=tmp.descrizione;
     document.getElementById("lat").value=tmp.lonlat[1];

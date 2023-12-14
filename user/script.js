@@ -155,11 +155,14 @@ recuperaDati("POI")
 
 card.addEventListener('click', e => {
   const id =  e.target.id.split("-")[1];
-  console.log(array[id]);
+  const type =  e.target.id.split("-")[0];
+  console.log(e.target.id);
+  if(type === "dettagli"){
   localStorage.setItem("Provenienza", "User");
   localStorage.setItem("Precisione", "Elenco");
   localStorage.setItem("POI", JSON.stringify(array[id]));
   window.location.replace("dettagli.html");
+  }
 })
 
 logout.onclick = () => {
