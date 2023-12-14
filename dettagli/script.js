@@ -26,8 +26,15 @@ buttonExtendNav.onclick = () => {
     boolNav = false;
   }
 }
-
- document.getElementById("titoloNav").innerHTML += `<a id="backDettagli" class="nav-link active"><img width="30" height="30" src="icon/Back.svg" alt="Open"> ` + createTitle(poi) + `</a>`;
+  
+ document.getElementById("titoloNav").innerHTML += `<div class="row align-items-center">
+     <div class="col-auto">
+       <a id="backDettagli" class="nav-link active"><img width="30" height="30" src="icon/Back.svg" alt="Open"></a>
+     </div>
+     <div class="col-auto">
+     <label class="text-white" class="col-form-label">` + createTitle(poi) + `</label>
+     </div>
+   </div>`;
 const backDettagli = document.getElementById("backDettagli");
 backDettagli.onclick = () => {
   console.log(provenienza);

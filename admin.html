@@ -78,13 +78,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active text-white">ADMIN</a>
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <label class="text-white" class="col-form-label">ADMIN</label>
+                </div>
+                <div class="col-auto">
+                  <a href="#" id="button1" class="nav-link active"  data-bs-toggle="modal" data-bs-target="#modal1" title="Crea un POI"><img width="30" height="30" src="icon/Add.svg" alt="Open"></a>
+                </div>
+              </div>
             </li>
             <li class="nav-item">
-              <a href="#" id="button1" class="nav-link active"  data-bs-toggle="modal" data-bs-target="#modal1"><img width="30" height="30" src="icon/Add.svg" alt="Open"></a>
-            </li>
-            <li class="nav-item">
-              <a href="admin.html" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg"
+              <a href="admin.html" class="nav-link active" id="logout" title="Logout"><img width="30" height="30" src="icon/Logout.svg"
                   alt="Open"></a>
             </li>
           </ul>

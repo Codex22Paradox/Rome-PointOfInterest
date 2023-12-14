@@ -31,18 +31,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active text-white">DETTAGLI</a>
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <label class="text-white" class="col-form-label">DETTAGLI</label>
+                </div>
+                <div class="col-auto">
+                  <a href="user.html" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg" alt="Open"></a>
+                </div>
+              </div>
             </li>
-            <li class="nav-item">
-              <a href="user.html" class="nav-link active" id="logout"><img width="30" height="30" src="icon/Logout.svg" alt="Open"></a>
-            </li>
+              
           </ul>
         </div>
       </div>
     </nav>
     <br>
     <div class="row justify-content-between">
-      <div class="col-auto" style="width: 50%;">
+      <div class="col-7 p-3 mb-2" >
         <div class="card " style="height: 100;">
           <div class="card-body">
             <h1 class="card-title text-white text-uppercase" id="dettagliTitolo"></h1>
