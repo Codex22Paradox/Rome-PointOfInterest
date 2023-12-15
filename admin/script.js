@@ -1,4 +1,4 @@
-import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2, check3, createCarousel, textCounter } from "/admin/admin.js";
+import { saveImg, addImgInput, loadLinkInputs, saveAll, updateCardMain, updateCardSec, resetCardMain, resetCardSec, saveLongDescr, check1, check2, check3, createCarousel, textCounter, validateUrl } from "/admin/admin.js";
 import { salvaDati, recuperaDati } from "/src/cache.js";
 import {createCardAdmin as createCard} from '/src/cards.js';
 const containerMain = document.getElementById("containerMain");
@@ -90,13 +90,19 @@ recuperaDati("POI")
 let tmp; 
 
 let currentElement = "";
-
+const copertina = document.getElementById("copertina");
 //apertura modal1
 document.getElementById("button1").onclick=()=>{
   document.getElementById("modal1Title").innerText="Aggiungi point of interest";
   document.getElementById("modal2Title").innerText="Aggiungi point of interest";
   document.getElementById("modal3Title").innerText="Aggiungi point of interest";
   modifica=false;
+  const controlloUrl = validateUrl(copertina.value);
+  if(controlloUrl){
+      copertina.classList.remove("border-danger");
+  }else{
+    copertina.classList.remove("border-success");
+  }
   tmp = {
     "titolo": "",
     "lonlat": [],  //lon lat
@@ -122,15 +128,25 @@ document.getElementById("addLink").onclick = () => {
   document.getElementById("link").value = "";
 }
 */
-//apertura modal2
+//Click su descrizione modal 1
 document.getElementById("breveDescr").addEventListener("keyup", (e) => {
   textCounter(document.getElementById("breveDescr"), document.getElementById('counter'), 150);
 });
 
+  copertina.addEventListener("keyup", (e) => {
+  const controlloUrl = validateUrl(copertina.value);
+  if(controlloUrl){
+      copertina.classList.remove("border-danger");
+      copertina.classList.add("border-success");
+  }else{
+    copertina.classList.remove("border-success");
+    copertina.classList.add("border-danger");
+  }
+});
 document.getElementById("goToModal2").onclick = () => {
   saveAll(tmp, document.getElementById("titolo").value, document.getElementById("breveDescr").value, document.getElementById("lat").value, document.getElementById("lon").value, document.getElementById("copertina").value);
   document.getElementById("cardModal1").innerHTML = updateCardMain(tmp);
-  if(check1(tmp)){
+  if(check1(tmp) && validateUrl(copertina.value)){
     document.getElementById("cardModal2").innerHTML = updateCardSec(tmp);
     modal1.hide();
     modal2.show();
@@ -152,9 +168,18 @@ document.getElementById("modal1").addEventListener('show.bs.modal', e => {
     tmp = JSON.parse(JSON.stringify(array[modificaId]));
     document.getElementById("titolo").value=tmp.titolo;
     document.getElementById("breveDescr").value=tmp.descrizione;
+    textCounter(document.getElementById("breveDescr"), document.getElementById('counter'), 150);
     document.getElementById("lat").value=tmp.lonlat[1];
     document.getElementById("lon").value=tmp.lonlat[0];
     document.getElementById("copertina").value=tmp.copertina;
+    const controlloUrl = validateUrl(copertina.value);
+    if(controlloUrl){
+        copertina.classList.remove("border-danger");
+        copertina.classList.add("border-success");
+    }else{
+      copertina.classList.remove("border-success");
+      copertina.classList.add("border-danger");
+    }
     document.getElementById("cardModal1").innerHTML = updateCardMain(tmp);
   }
 });
@@ -174,6 +199,31 @@ document.getElementById("modal3").addEventListener('show.bs.modal', e => {
     }
     document.getElementById("caruselAdd").innerHTML = createCarousel(tmp.immagini);
   }
+});
+
+document.getElementById("modal3").addEventListener('hidden.bs.modal', e => {
+  document.getElementById("linkContainer").innerHTML=`<div class="row">
+                    <div class="col">
+                      <input type="url" id="link-0" placeholder="Link immagine" class="form-control rounded-pill addLink">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-danger rounded-pill" id="removeLink-0" disabled><img width="30" height="30" src="icon/Remove.svg" alt="Open" id="removeLink-0"></button>
+                    </div>
+                  </div>
+                  <br>`;
+  document.getElementById("cardModal3").innerHTML=`<div class="col-auto">
+                  <div class="card text-white">      
+                    <div class="card-body" id="caruselAdd">
+                      <img src="img/placeholder.svg" class="img-card card-img-top img-fluid"      alt="...">
+                    </div>
+                    <div class="card-footer">
+                      <div class="row justify-content-end">
+                        <div class="col-auto"><button type="button" class="btn btn-outline-primary"><img width="30"
+                              height="30" src="icon/Open.svg" alt="Open"></button></div><br><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
 });
 
 //salkvataggio degli elementi del dizionario nel modal1

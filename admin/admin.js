@@ -249,3 +249,10 @@ export const textCounter = (field, countfield, maxlimit) => {
   else
     countfield.value = field.value.length + "/150";
 }
+
+
+export const validateUrl = (url) => {
+  const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  const imageExtensionRegex = /\.(jpeg|jpg|gif|png|bmp|webp)$/i;
+  return urlRegex.test(url) && imageExtensionRegex.test(url);
+}
