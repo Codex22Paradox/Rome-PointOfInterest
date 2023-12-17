@@ -34,10 +34,10 @@
       </div>
       <h1 class="text-white">ACCEDI</h1>
       <br>
-      <form onsubmit="return false">
+      <form method="post" action="#" onsubmit="return false">
         <div class="row justify-content-center">
           <div class="col-9">
-          <input type="text" class="form-control rounded-pill" placeholder="Nome utente" id="userName">
+          <input type="text" class="form-control rounded-pill" placeholder="Nome utente" id="userName" autofocus>
           </div>
         </div>
         <br>
@@ -46,7 +46,7 @@
           <div class="col-9">
           <div class="input-group mb-3">
             <input type="password" class="form-control rounded-start-pill" placeholder="Password" id="password">
-            <button class="btn btn-primary rounded-end-pill" type="button" id="mostraPassword"><img width="30" height="30" src="icon/PasswordOn.svg" alt="Open" id="immaginePassword"></button>
+            <button type="button" class="btn btn-primary rounded-end-pill" type="button" id="mostraPassword"><img width="30" height="30" src="icon/PasswordOn.svg" alt="Open" id="immaginePassword"></button>
               </div>          
           </div>
         </div>

@@ -92,7 +92,7 @@ let tmp;
 let currentElement = "";
 const copertina = document.getElementById("copertina");
 //apertura modal1
-document.getElementById("button1").onclick=()=>{
+document.getElementById("button1").onclick = () => {
   document.getElementById("modal1Title").innerText="Aggiungi point of interest";
   document.getElementById("modal2Title").innerText="Aggiungi point of interest";
   document.getElementById("modal3Title").innerText="Aggiungi point of interest";
@@ -314,7 +314,7 @@ card.addEventListener('click', e => {
   if(type === "dettagli"){
     localStorage.setItem("Provenienza", "Admin");
     localStorage.setItem("POI", JSON.stringify(array[id]));
-    window.location.replace("dettagli.html");
+    window.location.replace("dettagli.html?" + array[id].titolo);
   }else if(type==="elimina"){
     const button=document.getElementById("Sicuro");
     button.onclick = () => {

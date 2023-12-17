@@ -161,7 +161,7 @@ card.addEventListener('click', e => {
   localStorage.setItem("Provenienza", "User");
   localStorage.setItem("Precisione", "Elenco");
   localStorage.setItem("POI", JSON.stringify(array[id]));
-  window.location.replace("dettagli.html");
+  window.location.replace("dettagli.html?" + array[id].titolo);
   }
 })
 
