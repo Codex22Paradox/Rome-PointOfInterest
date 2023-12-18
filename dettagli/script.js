@@ -1,4 +1,6 @@
 import { createDetails, createTitle, createCarousel, createMap} from "/dettagli/dettagli.js";
+if(window.localStorage.length === 0)
+  window.location.replace("user.html");
 const poi = JSON.parse(localStorage.getItem("POI"));
 const provenienza = localStorage.getItem("Provenienza");
 localStorage.clear();
