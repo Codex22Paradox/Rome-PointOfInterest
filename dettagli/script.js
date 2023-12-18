@@ -1,6 +1,7 @@
 import { createDetails, createTitle, createCarousel, createMap} from "/dettagli/dettagli.js";
 const poi = JSON.parse(localStorage.getItem("POI"));
 const provenienza = localStorage.getItem("Provenienza");
+localStorage.clear();
 const container = document.getElementById("popup");
 const centro = poi.lonlat; //coordinate Roma
 const buttonExtendNav = document.getElementById('buttonExtendNav');
